@@ -73,7 +73,7 @@ export class UserController {
       }
 
       // 3. Eksekusi hapus via repository
-      await userRepository.delete(id);
+      await userRepository.softDelete(id);
 
       res.status(200).json({
         success: true,

@@ -1,0 +1,28 @@
+model Order {
+  id          String      @id @default(uuid())
+  orderNumber String      @unique // Contoh: ORD-20260207-001
+  totalAmount Float
+  status      OrderStatus @default(PENDING)
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  items       OrderItem[]
+  payment     Payment?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model OrderItem {
+  id      String @id @default(uuid())
+  orderId String
+  menuId  String
+  qty     Int
+  price   Float // Harga saat dibeli (antisipasi harga menu berubah)
+  order   Order  @relation(fields: [orderId], references: [id])
+  menu    Menu   @relation(fields: [menuId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELLED
+}

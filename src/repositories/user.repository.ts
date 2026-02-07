@@ -21,10 +21,17 @@ export class UserRepository {
     });
   }
 
+  async findAll(): Promise<User[]> {
+    return prisma.user.findMany();
+  }
+
   // Tambahkan ini: Menghapus user dari database
-  async delete(id: string): Promise<User> {
-    return prisma.user.delete({
+  async softDelete(id: string): Promise<User> {
+    return prisma.user.update({
       where: { id },
+      data: { 
+        deletedAt: new Date() 
+      },
     });
   }
 }

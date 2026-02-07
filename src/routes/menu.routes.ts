@@ -11,4 +11,4 @@ router.post('/', authenticate, authorize(['ADMIN', 'OWNER']), menuController.cre
 router.put('/:id', authenticate, authorize(['ADMIN', 'OWNER']), menuController.update);
 router.delete('/:id', authenticate, authorize(['ADMIN', 'OWNER']), menuController.delete);
 
-export default router;
+export default router;  

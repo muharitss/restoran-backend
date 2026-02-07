@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import userRoutes from './routes/user.routes';
 import menuRoutes from './routes/menu.routes';
 import categoriesRoutes from './routes/category.routes';
+import orderRoutes from './routes/order.routes'
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/menus', menuRoutes);
 app.use('/categories', categoriesRoutes);
+app.use('/orders', orderRoutes);
 
 const PORT = process.env.PORT || 3005;
 app.listen(PORT, () => {

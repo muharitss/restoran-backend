@@ -3,15 +3,13 @@
     "module": "nodenext",
     "target": "esnext",
     "types": ["node"],
-    "moduleResolution": "nodenext", // Tambahkan ini eksplisit
+    "moduleResolution": "nodenext",
     "strict": true,
     "skipLibCheck": true,
-    "esModuleInterop": true, // Sangat penting untuk library CommonJS seperti dotenv
-    
-    // Aktifkan ini agar TS tahu di mana mulai mencari file
-    "rootDir": "./", 
+    "esModuleInterop": true,
+    "rootDir": "./src", 
     "outDir": "./dist"
   },
-  "include": ["src/**/*", "prisma.config.ts"], 
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"], 
+  "exclude": ["node_modules", "dist"] 
 }

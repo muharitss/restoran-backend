@@ -1,4 +1,3 @@
-// src/controllers/menu.controller.ts
 import { Request, Response } from 'express';
 import { MenuService } from '../services/menu.service';
 
@@ -44,6 +43,27 @@ export class MenuController {
 
       await menuService.deleteMenu(id);
       res.json({ success: true, message: "Menu berhasil dihapus (soft delete)" });
+    } catch (error: any) {
+      res.status(400).json({ success: false, message: error.message });
+    }
+  }
+
+  async updateStock(req: Request, res: Response) {
+    try {
+      const { id } = req.params as { id: string };
+      const { adjustment, actualStock } = req.body;
+
+      const updatedMenu = await menuService.updateStock(
+        id, 
+        adjustment ? Number(adjustment) : undefined, 
+        actualStock !== undefined ? Number(actualStock) : undefined
+      );
+
+      res.json({ 
+        success: true, 
+        message: "Stok berhasil diperbarui", 
+        data: updatedMenu 
+      });
     } catch (error: any) {
       res.status(400).json({ success: false, message: error.message });
     }

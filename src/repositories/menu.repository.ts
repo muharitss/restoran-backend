@@ -33,4 +33,15 @@ export class MenuRepository {
       data: { deletedAt: new Date() }
     });
   }
+
+  async updateStock(id: string, amount: number, mode: 'relative' | 'absolute'): Promise<Menu> {
+    return prisma.menu.update({
+      where: { id },
+      data: {
+        stock: mode === 'relative' 
+          ? { increment: amount } 
+          : amount                
+      }
+    });
+  }
 }
